@@ -100,6 +100,6 @@ public class SendGmailByGmailApi {
     }
 
     public static void main(String[] args) {
-        sendMessage(new Gmail(),"1004974993qq@gmail.com")
+        //sendMessage(new Gmail(),"1004974993qq@gmail.com")
     }
 }

@@ -46,6 +46,7 @@ public class SendGmail {
         final String password = "xiaohua1314.";//密码
         Session session = Session.getDefaultInstance(props,
                 new Authenticator() {
+                    @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
                     }
@@ -73,9 +74,21 @@ public class SendGmail {
         System.out.println("Message sent.");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        String proxyHost = "127.0.0.1";
+        String proxyPort = "10808";
+
+        System.setProperty("http.proxyHost", proxyHost);
+        System.setProperty("http.proxyPort", proxyPort);
+
+        // 对https也开启代理
+        System.setProperty("https.proxyHost", proxyHost);
+        System.setProperty("https.proxyPort", proxyPort);
+        SslUtils.ignoreSsl();
         gmailSender("1004974993@qq.com");
+
         System.out.println("已发送到QQ邮箱。请查收！");
+
     }
 
     //javax.mail.MessagingException: Could not connect to SMTP host: smtp.gmail.com, port: 465;
