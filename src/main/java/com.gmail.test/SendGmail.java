@@ -21,6 +21,9 @@ public class SendGmail {
         props.put("mail.smtp.port", "465");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.connectiontimeout",30000);//套接字连接超时值毫秒。 默认值为无限超时
+        props.put("mail.smtp.timeout", 50000); //套接字 I/O 超时值以毫秒为单位
+
     }
 
 
@@ -76,7 +79,7 @@ public class SendGmail {
 
     public static void main(String[] args) throws Exception {
         String proxyHost = "127.0.0.1";
-        String proxyPort = "10808";
+        String proxyPort = "10809";
 
         System.setProperty("http.proxyHost", proxyHost);
         System.setProperty("http.proxyPort", proxyPort);
