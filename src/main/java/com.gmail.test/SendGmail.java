@@ -1,5 +1,6 @@
 package com.gmail.test;
 
+
 import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -21,8 +22,8 @@ public class SendGmail {
         props.put("mail.smtp.port", "465");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.connectiontimeout",30000);//套接字连接超时值毫秒。 默认值为无限超时
-        props.put("mail.smtp.timeout", 50000); //套接字 I/O 超时值以毫秒为单位
+        props.put("mail.smtp.connectiontimeout",1000 * 60 *3);//套接字连接超时值毫秒。 默认值为无限超时
+        props.put("mail.smtp.timeout", 1000 * 60 *3); //套接字 I/O 超时值以毫秒为单位
 
     }
 
@@ -78,15 +79,14 @@ public class SendGmail {
     }
 
     public static void main(String[] args) throws Exception {
+       // String proxyHost = "155.138.231.16";
+       // String proxyPort = "8288";
         String proxyHost = "127.0.0.1";
-        String proxyPort = "10809";
+        String proxyPort = "10808";
 
-        System.setProperty("http.proxyHost", proxyHost);
-        System.setProperty("http.proxyPort", proxyPort);
-
-        // 对https也开启代理
-        System.setProperty("https.proxyHost", proxyHost);
-        System.setProperty("https.proxyPort", proxyPort);
+        System.setProperty("socksProxyHost", proxyHost);
+        System.setProperty("socksProxyPort", proxyPort);
+        //Authenticator.setDefault(new MyAuthenticator("root","aabbcc123!"));
         SslUtils.ignoreSsl();
         gmailSender("1004974993@qq.com");
 
@@ -96,4 +96,24 @@ public class SendGmail {
 
     //javax.mail.MessagingException: Could not connect to SMTP host: smtp.gmail.com, port: 465;
     //看看代理服务器有没有开通465端口
+   /* public static class MyAuthenticator extends Authenticator{
+
+        private String user;
+        private String password;
+
+        public MyAuthenticator() {
+        }
+
+        public MyAuthenticator(String user, String password) {
+            this.user = user;
+            this.password = password;
+        }
+        protected PasswordAuthentication getPasswordAuthentication(){
+
+            PasswordAuthentication passwordAuthentication;
+            passwordAuthentication = new PasswordAuthentication(user, password.toCharArray());
+            return passwordAuthentication;
+        }
+    }*/
 }
+
