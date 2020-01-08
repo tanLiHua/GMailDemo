@@ -8,7 +8,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
 
-public class SendGmail {
+public class SendGmailToQQ {
 
     /*
      * gmail邮箱SSL方式
@@ -47,7 +47,7 @@ public class SendGmail {
         gmailssl(props);
 
         final String username = "1004974993qq@gmail.com";//gmail邮箱
-        final String password = "xiaohua1314.";//密码
+        final String password = "";//gmail密码
         Session session = Session.getDefaultInstance(props,
                 new Authenticator() {
                     @Override
@@ -88,7 +88,7 @@ public class SendGmail {
         System.setProperty("socksProxyPort", proxyPort);
         //Authenticator.setDefault(new MyAuthenticator("root","aabbcc123!"));
         SslUtils.ignoreSsl();
-        gmailSender("1004974993@qq.com");
+        gmailSender("1004974993@qq.com");  //目的邮箱账号
 
         System.out.println("已发送到QQ邮箱。请查收！");
 
