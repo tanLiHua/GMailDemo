@@ -17,15 +17,16 @@ import java.security.GeneralSecurityException;
 
 public class SendEmailToGmail {
 
-    public static void sendEmail() throws GeneralSecurityException {
+    public static void sendEmail() throws Exception {
         // 收件人电子邮箱
         String to = "853908786qq@gmail.com";
 
         // 发件人电子邮箱
-        String from = "853908786@qq.com";
-
+      //  String from = "853908786@qq.com";
+        String from = "q1004974993@163.com";
         // 指定发送邮件的主机为 smtp.qq.com
-        String host = "smtp.qq.com";  //QQ 邮件服务器
+        //String host = "smtp.qq.com";  //QQ 邮件服务器
+        String host = "smtp.163.com";  //网易邮件服务器
 
         // 获取系统属性
         Properties properties = System.getProperties();
@@ -40,9 +41,10 @@ public class SendEmailToGmail {
         properties.put("mail.smtp.ssl.socketFactory", sf);
         // 获取默认session对象
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            @Override
             public PasswordAuthentication getPasswordAuthentication() {
                 /*温馨提醒：为了你的帐户安全，更改QQ密码以及独立密码会触发授权码过期，需要重新获取新的授权码登录。*/
-                return new PasswordAuthentication("853908786@qq.com", "cecjdetbmkwzbaic"); //发件人邮件用户名、密码
+                return new PasswordAuthentication(from, "aabbcc123"); //发件人邮件用户名、密码
             }
         });
 
@@ -67,6 +69,7 @@ public class SendEmailToGmail {
             System.out.println("Sent message successfully....from runoob.com");
         } catch (MessagingException mex) {
             mex.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -78,13 +81,13 @@ public class SendEmailToGmail {
             @Override
             public void run() {
                 int count = 501;
-                int num = 208;
+                int num = 0;  //200+240
                 try {
-                    for (int i = 209; i <= count; i++) {
+                    for (int i = 0; i <= count; i++) {
                         sendEmail();
                         num += 1;
                         System.out.println("i=---" + i + "当前成功发送完成第--" + num + "--封邮件");
-                        Thread.sleep(3000);
+                        Thread.sleep(5000);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
