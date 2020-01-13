@@ -1,9 +1,8 @@
-package com.gmail.test;
+package com.gmail.inland;
 
 import com.google.api.client.util.Base64;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
-import com.google.common.util.concurrent.Service;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;

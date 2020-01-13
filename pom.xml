@@ -20,6 +20,28 @@
   </properties>
 
   <dependencies>
+    <!-- Pull in as a traditional dependency -->
+    <dependency>
+      <groupId>com.konghq</groupId>
+      <artifactId>unirest-java</artifactId>
+      <version>3.3.00</version>
+    </dependency>
+
+    <!-- OR as a snazzy new standalone jar with shaded dependencies -->
+    <dependency>
+      <groupId>com.konghq</groupId>
+      <artifactId>unirest-java</artifactId>
+      <version>3.3.00</version>
+      <classifier>standalone</classifier>
+    </dependency>
+    <!-- mailGun end-->
+
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.4</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
