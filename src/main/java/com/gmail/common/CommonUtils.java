@@ -62,16 +62,16 @@ public class CommonUtils {
 
     /**
      * 利用流读取文件内容
-     * @param html html文件名
+     * @param filePath 文件路径
      * @throws IOException
      */
-    public static String readAndWriteHtml(String html) throws IOException {
-        File htmlFile = new File("C:" + File.separator + "tmp" + File.separator + "html" + File.separator, html);
+    public static String readAndWriteHtml(String filePath) throws IOException {
+        //File htmlFile = new File("C:" + File.separator + "tmp" + File.separator + "html" + File.separator, html);
         InputStreamReader isReader = null;
         BufferedReader bufReader = null;
         StringBuffer buf = new StringBuffer();
         try {
-            isReader = new InputStreamReader(new FileInputStream(htmlFile), "utf-8");
+            isReader = new InputStreamReader(new FileInputStream(new File(filePath)), "utf-8");
             bufReader = new BufferedReader(isReader, 1);
             String data;
             while((data = bufReader.readLine())!= null) {
@@ -134,5 +134,26 @@ public class CommonUtils {
 
        }
         System.out.println("total:" +total);*/
+
+        JSONObject object = (JSONObject) JSONObject.parse("");
+
+        JSONArray jsonArray = (JSONArray)object.get("stats");
+        for(int i =0; i<jsonArray.size();i++){
+            JSONObject o = (JSONObject)jsonArray.get(i);
+            if(o.containsKey("delivered")){
+                JSONObject deliveredJson = (JSONObject) o.get("delivered");
+                System.out.println("投递数"+Long.parseLong(deliveredJson.get("total").toString()));
+            }
+            if(o.containsKey("failed")){
+                JSONObject failedJson = (JSONObject) o.get("failed");
+                JSONObject permanentJson = (JSONObject) failedJson.get("permanent");
+                System.out.println(Long.parseLong(permanentJson.get("total").toString()));
+            }
+            if(o.containsKey("accepted")){
+                JSONObject openedJson = (JSONObject) o.get("accepted");
+                System.out.println(Long.parseLong(openedJson.get("total").toString()));
+            }
+
+        }
     }
 }

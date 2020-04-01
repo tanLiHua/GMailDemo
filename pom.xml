@@ -20,6 +20,15 @@
   </properties>
 
   <dependencies>
+
+
+    <!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.1</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
     <dependency>
       <groupId>com.alibaba</groupId>
@@ -39,21 +48,20 @@
       <artifactId>slf4j-api</artifactId>
       <version>1.7.25</version>
     </dependency>
-
-
-    <!-- Pull in as a traditional dependency -->
+    <!-- 利用javaMail发送邮件-->
     <dependency>
-      <groupId>com.konghq</groupId>
-      <artifactId>unirest-java</artifactId>
-      <version>3.3.00</version>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.7</version>
     </dependency>
 
-    <!-- OR as a snazzy new standalone jar with shaded dependencies -->
+
+    <!-- end -->
+    <!-- mailgun :Pull in as a traditional dependency  -->
     <dependency>
       <groupId>com.konghq</groupId>
       <artifactId>unirest-java</artifactId>
       <version>3.3.00</version>
-      <classifier>standalone</classifier>
     </dependency>
     <!-- mailGun end-->
 
